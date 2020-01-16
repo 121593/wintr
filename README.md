@@ -1,6 +1,13 @@
 # Wintr Api Abstraction
 Unofficial [Wintr scrapper service](https://wintr.com) abstraction
 
+[![Build status](https://gitlab.com/121593/wintr/badges/master/pipeline.svg)](https://gitlab.com/121593/wintr/pipelines)
+[![Coverage Status](https://coveralls.io/repos/gitlab/121593/wintr/badge.svg?branch=master)](https://coveralls.io/gitlab/121593/wintr?branch=master)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/121593/wintr)
+[![npm version](https://badge.fury.io/js/wintr.svg)](https://badge.fury.io/js/wintr)
+[![Dependencies](https://david-dm.org/121593/wintr.svg)](https://david-dm.org/121593/wintr.svg)
+[![ISC license](http://img.shields.io/badge/license-ISC-brightgreen.svg)](http://opensource.org/licenses/ISC)
+
 ## Installation
 `npm i wintr`
 
