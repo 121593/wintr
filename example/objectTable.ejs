@@ -1,0 +1,36 @@
+<table>
+    <% if(typeof caption === 'string') { -%>
+        <caption><b><%= caption %></b></caption>
+    <% } -%>
+    <tbody>
+
+    <% if(!object || !Object.entries(object).length) { -%>
+        <tr>
+            <td>NULL</td>
+        </tr>
+    <% } else { %>
+
+        <% for (let key of Object.keys(object)) { -%>
+            <tr>
+                <% // Do not print out key if object is an Array
+                if(!Array.isArray(object)) { %>
+                    <td><b><%= key %></b></td>
+                <% } %>
+                <td>
+
+                    <%
+                        // Do not render empty or univalue as an array
+                        if (Array.isArray(object[key]) && object[key].length < 2) {
+                            object[key] = object[key][0]
+                        } -%>
+
+                    <% if (typeof object[key] === 'object') { -%>
+                        <%- include('objectTable', {object: object[key], caption: null}); -%>
+                    <% } else { -%>
+                        <%= object[key] -%>
+                    <% } -%>
+                </td>
+            </tr>
+    <% }} -%>
+    </tbody>
+</table>

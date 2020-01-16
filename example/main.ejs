@@ -1,0 +1,58 @@
+<% const pageTitle = 'Wintr API wrapper tester' -%>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+
+<h1><%= pageTitle %></h1>
+<p>Project hosted <a href="https://github.com/121593/wintr">@github</a></p>
+
+<!--suppress HtmlUnknownTarget -->
+<form action="/post" method="post">
+    <% if (typeof error !== 'undefined' && error) { %>
+        <p style="color: darkred"><%= error %></p>
+    <% } -%>
+    <div style="display: flex;gap: 1em;">
+        <div>
+            <label>
+                Api key
+                <br/>
+                <input name="apikey" type="text" placeholder="apikey" size="35"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                Url
+                <br/>
+                <input name="url" type="url" placeholder="url" size="35"/>
+            </label>
+        </div>
+    </div>
+
+    <b>Js rendering</b>
+    <br/>
+    <label style="display: inline-block">
+        yes
+        <input name="jsrender" type="radio" value="true"/>
+    </label>
+    <label style="display: inline-block">
+        no
+        <input name="jsrender" type="radio" value="false "/>
+    </label>
+
+    <br/>
+    <button type="submit">Submit</button>
+    <a onclick="window.location.assign('/getAccountData?apikey=' + document.forms[0][0].value)" type="button">Get account data</a>
+</form>
+
+<% if (typeof result !== 'undefined' && result) { %>
+    <hr/>
+    <%- include('objectTable', {object: result, caption: 'Results'}); %>
+<% } %>
+</body>
+</html>
