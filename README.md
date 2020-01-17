@@ -20,21 +20,64 @@ const w = new Wintr(options)
 
 Two public methods are then available to interact with the Api :
 
-- Fetch Api
-```ecmascript 6
-w.fetch(options)
-    .then(data => {})
-    .catch(error => {})
-```
-Get account data
-```ecmascript 6
-w.getAccountData(options)
-    .then(data => {})
-    .catch(error => {})
-```
+- Fetch Api : 
+`w.fetch(options) : Promise<>`
+- Get account data : 
+`w.getAccountData(options): Promise<>`
 
 ### Options
 Options are detailed [here](https://www.wintr.com/api-documentation), and are available as constants in the module for easy rules writing
+
+
+### 'Real-life' example
+
+Extracting title and price from an Amazon product page :
+
+```ecmascript 6
+const { Wintr, constants } = require('wintr')
+
+const scraper = new Wintr({
+ [constants.PARAMETERS.API_KEY]: 'myApiKey',
+ [constants.PARAMETERS.JS_RENDERING]: true
+})
+
+scraper.fetch({
+  [constants.PARAMETERS.URL]: 'https://amazon.com/dp/productId',
+  [constants.PARAMETERS.OUTPUT_SCHEMA]:
+    {
+      productTitle: {
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_SELECTOR]: '#productTitle',
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_ATTRIBUTE]: '*text*',
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_MODIFIER]: [
+          constants.OUTPUT_SCHEMA_MODIFIERS.TRIM_RESULT
+        ]
+      },
+      price: {
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_SELECTOR]: '#priceblock_ourprice',
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_ATTRIBUTE]: '*text*',
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_MODIFIER]: [
+          constants.OUTPUT_SCHEMA_MODIFIERS.TRIM_RESULT
+        ],
+        [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_REPLACER]: [
+          {
+            [constants.OUTPUT_SCHEMA_REPLACER.SEARCH]: '$',
+            [constants.OUTPUT_SCHEMA_REPLACER.REPLACE_BY]: ''
+          }
+        ]
+      }
+    }
+  }
+)
+.then(({ content }) => { 
+  console.log(content)
+  // Logs something like that :
+  // {
+  //    productTitle: "Super cool product that everyone will like",
+  //    price: "999.99"
+  // }
+})
+.catch(console.error)
+```
 
 ## Development
 Tests and examples are not included in the Npm release to keep it lightweight.
