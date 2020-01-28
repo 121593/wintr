@@ -47,12 +47,18 @@
 
     <br/>
     <button type="submit">Submit</button>
-    <a onclick="window.location.assign('/getAccountData?apikey=' + document.forms[0][0].value)" type="button">Get account data</a>
+    <a onclick="window.location.assign('/getAccountData?apikey=' + document.forms[0][0].value)" type="button">Get
+        account data</a>
 </form>
 
 <% if (typeof result !== 'undefined' && result) { %>
     <hr/>
     <%- include('objectTable', {object: result, caption: 'Results'}); %>
 <% } %>
+
+<footer style="padding-top: 3em">
+    using <a href="https://oxal.org/projects/sakura/">sakura css theme</a>
+</footer>
+
 </body>
 </html>
