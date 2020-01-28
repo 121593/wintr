@@ -2,6 +2,11 @@ const baseUrl = 'https://api.wintr.com'
 const fetchPathname = 'fetch'
 const accountInfoPathname = 'accountdata'
 
+/*
+ * Reproduce information from Wintr website.
+ * Source : https://www.wintr.com/api-documentation
+ */
+
 // Freeze object to prevent constants modification
 module.exports = Object.freeze({
   URL: {
@@ -44,6 +49,8 @@ module.exports = Object.freeze({
     CSS_ATTRIBUTE: 'attr',
     DO_NOT_CONTAIN: 'doesnotcontain',
     FILTER_EMPTY_STRINGS: 'filteremtystrings',
+    GROUP_CSS_SELECTOR: 'group',
+    GROUP_SCHEMA_DESCRIPTOR: 'data',
     WINTR_MODIFIER: 'modifier',
     WINTR_REPLACER: 'replacer'
   },
