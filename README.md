@@ -43,31 +43,34 @@ const scraper = new Wintr({
 
 scraper.fetch({
   [constants.PARAMETERS.URL]: 'https://amazon.com/dp/productId',
-  [constants.PARAMETERS.OUTPUT_SCHEMA]:
-    {
-      productTitle: {
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_SELECTOR]: '#productTitle',
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_ATTRIBUTE]: '*text*',
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_MODIFIER]: [
-          constants.OUTPUT_SCHEMA_MODIFIERS.TRIM_RESULT
-        ]
-      },
-      price: {
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_SELECTOR]: '#priceblock_ourprice',
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_ATTRIBUTE]: '*text*',
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_MODIFIER]: [
-          constants.OUTPUT_SCHEMA_MODIFIERS.TRIM_RESULT
-        ],
-        [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_REPLACER]: [
-          {
-            [constants.OUTPUT_SCHEMA_REPLACER.SEARCH]: '$',
-            [constants.OUTPUT_SCHEMA_REPLACER.REPLACE_BY]: ''
-          }
-        ]
+  [constants.PARAMETERS.OUTPUT_SCHEMA]: {
+    product: {
+      [constants.PARAMETERS.GROUP_CSS_SELECTOR]: 'body',
+      [constants.PARAMETERS.GROUP_SCHEMA_DESCRIPTOR]: {
+        productTitle: {
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_SELECTOR]: '#productTitle',
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_ATTRIBUTE]: '*text*',
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_MODIFIER]: [
+            constants.OUTPUT_SCHEMA_MODIFIERS.TRIM_RESULT
+          ]
+        },
+        price: {
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_SELECTOR]: '#priceblock_ourprice',
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.CSS_ATTRIBUTE]: '*text*',
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_MODIFIER]: [
+            constants.OUTPUT_SCHEMA_MODIFIERS.TRIM_RESULT
+          ],
+          [constants.OUTPUT_SCHEMA_DESCRIPTORS.WINTR_REPLACER]: [
+            {
+              [constants.OUTPUT_SCHEMA_REPLACER.SEARCH]: '$',
+              [constants.OUTPUT_SCHEMA_REPLACER.REPLACE_BY]: ''
+            }
+          ]
+        }
       }
     }
   }
-)
+})
 .then(({ content }) => { 
   console.log(content)
   // Logs something like that :
