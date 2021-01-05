@@ -14,7 +14,7 @@
   },
   "description": "Wintr (wintr.com) unofficial API wrapper",
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "ava": "^2.4.0",
