@@ -6,7 +6,7 @@ test('Missing options on construction should trigger an error', t => {
   const error = t.throws(() => {
     // eslint-disable-next-line no-unused-vars
     const wintr = new Wintr()
-  }, Error)
+  }, { instanceOf: Error })
 
   t.is(error.message, 'Options parameter should be supplied')
 })
@@ -15,7 +15,7 @@ test('Missing API_KEY option on construction should trigger an error', t => {
   const error = t.throws(() => {
     // eslint-disable-next-line no-unused-vars
     const wintr = new Wintr({ [PARAMETERS.URL]: 'xxx' })
-  }, Error)
+  }, { instanceOf: Error })
 
   t.is(error.message, 'Api key should be supplied')
 })
@@ -25,7 +25,7 @@ test('Wrong options should trigger errors', t => {
   const error = t.throws(() => {
     // eslint-disable-next-line no-unused-vars
     const wintr = new Wintr(wrongOptions)
-  }, Error)
+  }, { instanceOf: Error })
 
   t.is(error.message, `Option ${Object.keys(wrongOptions)[0]} is not allowed`)
 })

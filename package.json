@@ -4,6 +4,11 @@
     "email": "97a4389e-260e-44f6-a9c7-1008965816e0@anonaddy.me",
     "url": "https://github.com/121593"
   },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/121593/wintr/issues"
   },
@@ -14,17 +19,18 @@
   },
   "description": "Wintr (wintr.com) unofficial API wrapper",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.24.0"
   },
   "devDependencies": {
-    "ava": "^2.4.0",
-    "commitizen": "^4.0.3",
-    "ejs": "^3.0.1",
+    "ava": "^3.15.0",
+    "commitizen": "^4.2.4",
+    "ejs": "^3.1.6",
     "eslint": "^6.7.2",
-    "nodemon": "^2.0.2",
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.15",
     "nyc": "^14.1.1",
-    "querystring": "^0.2.0",
-    "standard": "^14.3.1"
+    "querystring": "^0.2.1",
+    "standard": "^14.3.4"
   },
   "eslintConfig": {
     "extends": "standard",
